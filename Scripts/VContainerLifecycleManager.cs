@@ -11,20 +11,18 @@ namespace UniT.Lifecycle
     {
         [Preserve]
         public VContainerLifecycleManager(
-            ContainerLocal<IEnumerable<IEarlyLoadable>>      earlyLoadableServices,
-            ContainerLocal<IEnumerable<IAsyncEarlyLoadable>> asyncEarlyLoadableServices,
-            ContainerLocal<IEnumerable<ILoadable>>           loadableServices,
-            ContainerLocal<IEnumerable<IAsyncLoadable>>      asyncLoadableServices,
-            ContainerLocal<IEnumerable<ILateLoadable>>       lateLoadableServices,
-            ContainerLocal<IEnumerable<IAsyncLateLoadable>>  asyncLateLoadableServices,
-            ContainerLocal<IEnumerable<IUpdatable>>          updatableServices,
-            ContainerLocal<IEnumerable<ILateUpdatable>>      lateUpdatableServices,
-            ContainerLocal<IEnumerable<IFixedUpdatable>>     fixedUpdatableServices,
-            ContainerLocal<IEnumerable<IFocusGainListener>>  focusGainListeners,
-            ContainerLocal<IEnumerable<IFocusLostListener>>  focusLostListeners,
-            ContainerLocal<IEnumerable<IPauseListener>>      pauseListeners,
-            ContainerLocal<IEnumerable<IResumeListener>>     resumeListeners,
-            ILoggerManager                                   loggerManager
+            ContainerLocal<IEnumerable<IEarlyLoadable>>        earlyLoadableServices,
+            ContainerLocal<IEnumerable<IAsyncEarlyLoadable>>   asyncEarlyLoadableServices,
+            ContainerLocal<IEnumerable<ILoadable>>             loadableServices,
+            ContainerLocal<IEnumerable<IAsyncLoadable>>        asyncLoadableServices,
+            ContainerLocal<IEnumerable<ILateLoadable>>         lateLoadableServices,
+            ContainerLocal<IEnumerable<IAsyncLateLoadable>>    asyncLateLoadableServices,
+            ContainerLocal<IEnumerable<IUpdatable>>            updatableServices,
+            ContainerLocal<IEnumerable<ILateUpdatable>>        lateUpdatableServices,
+            ContainerLocal<IEnumerable<IFixedUpdatable>>       fixedUpdatableServices,
+            ContainerLocal<IEnumerable<IFocusChangedListener>> focusChangedListeners,
+            ContainerLocal<IEnumerable<IPauseChangedListener>> pauseChangedListeners,
+            ILoggerManager                                     loggerManager
         ) : base(
             earlyLoadableServices.Value,
             asyncEarlyLoadableServices.Value,
@@ -35,10 +33,8 @@ namespace UniT.Lifecycle
             updatableServices.Value,
             lateUpdatableServices.Value,
             fixedUpdatableServices.Value,
-            focusGainListeners.Value,
-            focusLostListeners.Value,
-            pauseListeners.Value,
-            resumeListeners.Value,
+            focusChangedListeners.Value,
+            pauseChangedListeners.Value,
             loggerManager
         )
         {

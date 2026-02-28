@@ -11,20 +11,18 @@ namespace UniT.Lifecycle
     {
         [Preserve]
         public ZenjectLifecycleManager(
-            [InjectLocal] IEnumerable<IEarlyLoadable>      earlyLoadableServices,
-            [InjectLocal] IEnumerable<IAsyncEarlyLoadable> asyncEarlyLoadableServices,
-            [InjectLocal] IEnumerable<ILoadable>           loadableServices,
-            [InjectLocal] IEnumerable<IAsyncLoadable>      asyncLoadableServices,
-            [InjectLocal] IEnumerable<ILateLoadable>       lateLoadableServices,
-            [InjectLocal] IEnumerable<IAsyncLateLoadable>  asyncLateLoadableServices,
-            [InjectLocal] IEnumerable<IUpdatable>          updatableServices,
-            [InjectLocal] IEnumerable<ILateUpdatable>      lateUpdatableServices,
-            [InjectLocal] IEnumerable<IFixedUpdatable>     fixedUpdatableServices,
-            [InjectLocal] IEnumerable<IFocusGainListener>  focusGainListeners,
-            [InjectLocal] IEnumerable<IFocusLostListener>  focusLostListeners,
-            [InjectLocal] IEnumerable<IPauseListener>      pauseListeners,
-            [InjectLocal] IEnumerable<IResumeListener>     resumeListeners,
-            ILoggerManager                                 loggerManager
+            [InjectLocal] IEnumerable<IEarlyLoadable>        earlyLoadableServices,
+            [InjectLocal] IEnumerable<IAsyncEarlyLoadable>   asyncEarlyLoadableServices,
+            [InjectLocal] IEnumerable<ILoadable>             loadableServices,
+            [InjectLocal] IEnumerable<IAsyncLoadable>        asyncLoadableServices,
+            [InjectLocal] IEnumerable<ILateLoadable>         lateLoadableServices,
+            [InjectLocal] IEnumerable<IAsyncLateLoadable>    asyncLateLoadableServices,
+            [InjectLocal] IEnumerable<IUpdatable>            updatableServices,
+            [InjectLocal] IEnumerable<ILateUpdatable>        lateUpdatableServices,
+            [InjectLocal] IEnumerable<IFixedUpdatable>       fixedUpdatableServices,
+            [InjectLocal] IEnumerable<IFocusChangedListener> focusChangedListeners,
+            [InjectLocal] IEnumerable<IPauseChangedListener> pauseChangedListeners,
+            ILoggerManager                                   loggerManager
         ) : base(
             earlyLoadableServices,
             asyncEarlyLoadableServices,
@@ -35,10 +33,8 @@ namespace UniT.Lifecycle
             updatableServices,
             lateUpdatableServices,
             fixedUpdatableServices,
-            focusGainListeners,
-            focusLostListeners,
-            pauseListeners,
-            resumeListeners,
+            focusChangedListeners,
+            pauseChangedListeners,
             loggerManager
         )
         {

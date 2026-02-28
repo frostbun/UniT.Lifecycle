@@ -1,23 +1,17 @@
 ﻿#nullable enable
 namespace UniT.Lifecycle
 {
-    public interface IFocusGainListener
+    public interface IFocusChangedListener
     {
         public void OnFocusGain();
-    }
 
-    public interface IFocusLostListener
-    {
         public void OnFocusLost();
     }
 
-    public interface IPauseListener
+    public interface IPauseChangedListener
     {
         public void OnPause();
-    }
 
-    public interface IResumeListener
-    {
         public void OnResume();
     }
 }
