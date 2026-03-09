@@ -10,18 +10,20 @@ namespace UniT.Lifecycle
     {
         [Preserve]
         public DILifecycleManager(
-            IEnumerable<IEarlyLoadable>        earlyLoadableServices,
-            IEnumerable<IAsyncEarlyLoadable>   asyncEarlyLoadableServices,
-            IEnumerable<ILoadable>             loadableServices,
-            IEnumerable<IAsyncLoadable>        asyncLoadableServices,
-            IEnumerable<ILateLoadable>         lateLoadableServices,
-            IEnumerable<IAsyncLateLoadable>    asyncLateLoadableServices,
-            IEnumerable<IUpdatable>            updatableServices,
-            IEnumerable<ILateUpdatable>        lateUpdatableServices,
-            IEnumerable<IFixedUpdatable>       fixedUpdatableServices,
-            IEnumerable<IFocusChangedListener> focusChangedListeners,
-            IEnumerable<IPauseChangedListener> pauseChangedListeners,
-            ILoggerManager                     loggerManager
+            IEnumerable<IEarlyLoadable>      earlyLoadableServices,
+            IEnumerable<IAsyncEarlyLoadable> asyncEarlyLoadableServices,
+            IEnumerable<ILoadable>           loadableServices,
+            IEnumerable<IAsyncLoadable>      asyncLoadableServices,
+            IEnumerable<ILateLoadable>       lateLoadableServices,
+            IEnumerable<IAsyncLateLoadable>  asyncLateLoadableServices,
+            IEnumerable<IUpdatable>          updatableServices,
+            IEnumerable<ILateUpdatable>      lateUpdatableServices,
+            IEnumerable<IFixedUpdatable>     fixedUpdatableServices,
+            IEnumerable<IFocusLostListener>  focusLostListeners,
+            IEnumerable<IFocusGainListener>  focusGainListeners,
+            IEnumerable<IPauseListener>      pauseListeners,
+            IEnumerable<IResumeListener>     resumeListeners,
+            ILoggerManager                   loggerManager
         ) : base(
             earlyLoadableServices,
             asyncEarlyLoadableServices,
@@ -32,8 +34,10 @@ namespace UniT.Lifecycle
             updatableServices,
             lateUpdatableServices,
             fixedUpdatableServices,
-            focusChangedListeners,
-            pauseChangedListeners,
+            focusLostListeners,
+            focusGainListeners,
+            pauseListeners,
+            resumeListeners,
             loggerManager
         )
         {
