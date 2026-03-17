@@ -87,12 +87,12 @@ namespace UniT.Lifecycle
             {
                 var subProgresses = progress.CreateSubProgresses(3).ToArray();
                 this.logger.Debug("Early loading");
-                this.earlyLoadableServices.ForEach(service =>
+                this.earlyLoadableServices.ForEach((service, @this) =>
                 {
-                    this.logger.Debug($"Loading {service.GetType().Name}");
+                    @this.logger.Debug($"Loading {service.GetType().Name}");
                     service.Load();
-                    this.logger.Debug($"Loaded {service.GetType().Name}");
-                });
+                    @this.logger.Debug($"Loaded {service.GetType().Name}");
+                }, this);
                 await this.asyncEarlyLoadableServices.ForEachAsync(
                     async (service, progress, cancellationToken) =>
                     {
@@ -106,12 +106,12 @@ namespace UniT.Lifecycle
                 this.logger.Debug("Early loaded");
                 subProgresses[0]?.Report(1);
                 this.logger.Debug("Loading");
-                this.loadableServices.ForEach(service =>
+                this.loadableServices.ForEach((service, @this) =>
                 {
-                    this.logger.Debug($"Loading {service.GetType().Name}");
+                    @this.logger.Debug($"Loading {service.GetType().Name}");
                     service.Load();
-                    this.logger.Debug($"Loaded {service.GetType().Name}");
-                });
+                    @this.logger.Debug($"Loaded {service.GetType().Name}");
+                }, this);
                 await this.asyncLoadableServices.ForEachAsync(
                     async (service, progress, cancellationToken) =>
                     {
@@ -125,12 +125,12 @@ namespace UniT.Lifecycle
                 this.logger.Debug("Loaded");
                 subProgresses[1]?.Report(1);
                 this.logger.Debug("Late loading");
-                this.lateLoadableServices.ForEach(service =>
+                this.lateLoadableServices.ForEach((service, @this) =>
                 {
-                    this.logger.Debug($"Loading {service.GetType().Name}");
+                    @this.logger.Debug($"Loading {service.GetType().Name}");
                     service.Load();
-                    this.logger.Debug($"Loaded {service.GetType().Name}");
-                });
+                    @this.logger.Debug($"Loaded {service.GetType().Name}");
+                }, this);
                 await this.asyncLateLoadableServices.ForEachAsync(
                     async (service, progress, cancellationToken) =>
                     {
@@ -232,26 +232,26 @@ namespace UniT.Lifecycle
         {
             this.eventListener = new GameObject(nameof(LifecycleManager)).AddComponent<EventListener>().DontDestroyOnLoad();
 
-            this.updatableServices.ForEach(service => this.eventListener.Updating           += service.Update);
-            this.lateUpdatableServices.ForEach(service => this.eventListener.LateUpdating   += service.LateUpdate);
-            this.fixedUpdatableServices.ForEach(service => this.eventListener.FixedUpdating += service.FixedUpdate);
-            this.focusLostListeners.ForEach(service => this.eventListener.FocusLost         += service.OnFocusLost);
-            this.focusGainListeners.ForEach(service => this.eventListener.FocusGain         += service.OnFocusGain);
-            this.pauseListeners.ForEach(service => this.eventListener.Paused                += service.OnPause);
-            this.resumeListeners.ForEach(service => this.eventListener.Resumed              += service.OnResume);
+            foreach (var service in this.updatableServices) this.eventListener.Updating           += service.Update;
+            foreach (var service in this.lateUpdatableServices) this.eventListener.LateUpdating   += service.LateUpdate;
+            foreach (var service in this.fixedUpdatableServices) this.eventListener.FixedUpdating += service.FixedUpdate;
+            foreach (var service in this.focusLostListeners) this.eventListener.FocusLost         += service.OnFocusLost;
+            foreach (var service in this.focusGainListeners) this.eventListener.FocusGain         += service.OnFocusGain;
+            foreach (var service in this.pauseListeners) this.eventListener.Paused                += service.OnPause;
+            foreach (var service in this.resumeListeners) this.eventListener.Resumed              += service.OnResume;
         }
 
         private void Unload()
         {
             if (!this.eventListener) return;
 
-            this.updatableServices.ForEach(service => this.eventListener.Updating           -= service.Update);
-            this.lateUpdatableServices.ForEach(service => this.eventListener.LateUpdating   -= service.LateUpdate);
-            this.fixedUpdatableServices.ForEach(service => this.eventListener.FixedUpdating -= service.FixedUpdate);
-            this.focusLostListeners.ForEach(service => this.eventListener.FocusLost         -= service.OnFocusLost);
-            this.focusGainListeners.ForEach(service => this.eventListener.FocusGain         -= service.OnFocusGain);
-            this.pauseListeners.ForEach(service => this.eventListener.Paused                -= service.OnPause);
-            this.resumeListeners.ForEach(service => this.eventListener.Resumed              -= service.OnResume);
+            foreach (var service in this.updatableServices) this.eventListener.Updating           -= service.Update;
+            foreach (var service in this.lateUpdatableServices) this.eventListener.LateUpdating   -= service.LateUpdate;
+            foreach (var service in this.fixedUpdatableServices) this.eventListener.FixedUpdating -= service.FixedUpdate;
+            foreach (var service in this.focusLostListeners) this.eventListener.FocusLost         -= service.OnFocusLost;
+            foreach (var service in this.focusGainListeners) this.eventListener.FocusGain         -= service.OnFocusGain;
+            foreach (var service in this.pauseListeners) this.eventListener.Paused                -= service.OnPause;
+            foreach (var service in this.resumeListeners) this.eventListener.Resumed              -= service.OnResume;
 
             this.eventListener.gameObject.Destroy();
         }
