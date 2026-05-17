@@ -256,9 +256,17 @@ namespace UniT.Lifecycle
             this.eventListener.gameObject.Destroy();
         }
 
-        void IDisposable.Dispose() => this.Unload();
+        void IDisposable.Dispose()
+        {
+            this.Unload();
+            this.logger.Debug("Disposed");
+        }
 
-        ~LifecycleManager() => this.Unload();
+        ~LifecycleManager()
+        {
+            this.Unload();
+            this.logger.Debug("Finalized");
+        }
 
         private sealed class EventListener : MonoBehaviour
         {
