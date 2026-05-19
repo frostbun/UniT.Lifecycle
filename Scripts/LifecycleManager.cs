@@ -7,7 +7,6 @@ namespace UniT.Lifecycle
     using System.Threading;
     using Cysharp.Threading.Tasks;
     using UniT.Extensions;
-    using UniT.Extensions.UniTask;
     using UniT.Logging;
     using UnityEngine;
     using ILogger = UniT.Logging.ILogger;
