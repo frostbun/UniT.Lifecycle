@@ -1,0 +1,19 @@
+{
+  "name": "UniT.Lifecycle.Default.Zenject",
+  "references": [
+    "UniT.Lifecycle",
+    "UniT.Lifecycle.Default",
+    "UniT.Logging",
+    "Zenject"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.svermeulen.extenject",
+      "expression": "",
+      "define": "UNIT_ZENJECT"
+    }
+  ],
+  "defineConstraints": [
+    "UNIT_ZENJECT"
+  ]
+}

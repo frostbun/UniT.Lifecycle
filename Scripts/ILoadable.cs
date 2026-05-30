@@ -5,18 +5,38 @@ namespace UniT.Lifecycle
     using System.Threading;
     using Cysharp.Threading.Tasks;
 
-    public interface IAsyncEarlyLoadable
+    public interface ILoadOrder
+    {
+        public int Order => 0;
+    }
+
+    public interface ILoadable : ILoadOrder
+    {
+        public void Load();
+    }
+
+    public interface IAsyncLoadable : ILoadOrder
     {
         public UniTask LoadAsync(IProgress<float>? progress = null, CancellationToken cancellationToken = default);
     }
 
-    public interface IAsyncLoadable
+    public interface IEarlyLoadable : ILoadable
     {
-        public UniTask LoadAsync(IProgress<float>? progress = null, CancellationToken cancellationToken = default);
+        int ILoadOrder.Order => int.MinValue;
     }
 
-    public interface IAsyncLateLoadable
+    public interface IAsyncEarlyLoadable : IAsyncLoadable
     {
-        public UniTask LoadAsync(IProgress<float>? progress = null, CancellationToken cancellationToken = default);
+        int ILoadOrder.Order => int.MinValue;
+    }
+
+    public interface ILateLoadable : ILoadable
+    {
+        int ILoadOrder.Order => int.MaxValue;
+    }
+
+    public interface IAsyncLateLoadable : IAsyncLoadable
+    {
+        int ILoadOrder.Order => int.MaxValue;
     }
 }

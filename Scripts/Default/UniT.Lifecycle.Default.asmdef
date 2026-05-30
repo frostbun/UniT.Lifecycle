@@ -1,0 +1,10 @@
+{
+  "name": "UniT.Lifecycle.Default",
+  "references": [
+    "UniT.Lifecycle",
+    "UniT.Extensions",
+    "UniT.Extensions.UniTask",
+    "UniT.Logging",
+    "UniTask"
+  ]
+}

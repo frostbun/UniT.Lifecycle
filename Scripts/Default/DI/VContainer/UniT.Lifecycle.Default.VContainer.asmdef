@@ -1,0 +1,19 @@
+{
+  "name": "UniT.Lifecycle.Default.VContainer",
+  "references": [
+    "UniT.Lifecycle",
+    "UniT.Lifecycle.Default",
+    "UniT.Logging",
+    "VContainer"
+  ],
+  "versionDefines": [
+    {
+      "name": "jp.hadashikick.vcontainer",
+      "expression": "",
+      "define": "UNIT_VCONTAINER"
+    }
+  ],
+  "defineConstraints": [
+    "UNIT_VCONTAINER"
+  ]
+}
