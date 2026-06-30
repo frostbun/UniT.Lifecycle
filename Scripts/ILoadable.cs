@@ -22,21 +22,21 @@ namespace UniT.Lifecycle
 
     public interface IEarlyLoadable : ILoadable
     {
-        int ILoadOrder.Order => int.MinValue;
+        int ILoadOrder.Order => int.MinValue / 2;
     }
 
     public interface IAsyncEarlyLoadable : IAsyncLoadable
     {
-        int ILoadOrder.Order => int.MinValue;
+        int ILoadOrder.Order => int.MinValue / 2;
     }
 
     public interface ILateLoadable : ILoadable
     {
-        int ILoadOrder.Order => int.MaxValue;
+        int ILoadOrder.Order => int.MaxValue / 2;
     }
 
     public interface IAsyncLateLoadable : IAsyncLoadable
     {
-        int ILoadOrder.Order => int.MaxValue;
+        int ILoadOrder.Order => int.MaxValue / 2;
     }
 }

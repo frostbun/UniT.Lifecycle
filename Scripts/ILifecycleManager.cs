@@ -5,7 +5,7 @@ namespace UniT.Lifecycle
     using System.Threading;
     using Cysharp.Threading.Tasks;
 
-    public interface ILifecycleManager : IDisposable
+    public interface ILifecycleManager
     {
         public UniTask LoadAsync(IProgress<float>? progress = null, CancellationToken cancellationToken = default);
     }
